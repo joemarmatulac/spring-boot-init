@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>flow</artifactId>
+    <groupId>com.tst.flow</groupId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+    <name>flow</name>
+    <description> 
+        Dumangas management and billing system.
+    </description>
+    <inceptionYear>2014</inceptionYear>
+    <organization>
+        <name>TotalSoftTech</name>
+    </organization>
+    <developers>
+        <developer>
+            <id>201205-0011</id>
+            <name>Angelo Kaufmann</name>
+            <email>angelo@totalsofttech.com.ph</email>
+        </developer>
+        <developer>
+            <id>131101-001</id>
+            <name>Joemar Matulac</name>
+            <email>joemar.matulac@totalsofttech.com.ph</email>
+        </developer>
+        <developer>
+            <id>140806-0018</id>
+            <name>Glenn Emmanuel Solo</name>
+            <email>glenn_emmanuel@yahoo.com</email>
+        </developer>
+
+        <developer>
+            <id>140903-0019</id>
+            <name>Chris Angelo Sollesta</name>
+            <email>chrissollesta07@gmail.com</email>
+        </developer>
+        <developer>
+            <id>130701-0007</id>
+            <name>Michael Ryan Paclibar</name>
+            <email>michael@satellite.com.ph</email>
+        </developer>
+        <developer>
+            <id>120828-0009</id>
+            <name>Katelyn Neric</name>
+            <email>kate@totalsofttech.com.ph</email>
+        </developer>
+    </developers>
+    <modules>
+        <module>flow-service</module>
+        <module>flow-persistence</module>
+        <module>flow-commons</module>
+        <!-- Build this project using netbeans 
+        <module>flow-client</module>
+        -->
+        <module>flow-client</module>
+    </modules>
+    <properties>
+        <!-- use UTF-8 for everything -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+    <!-- Add Spring repositories -->
+    <!-- (you don't need this if you are using a .RELEASE version) -->
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <url>http://repo.spring.io/milestone</url>
+        </repository>
+        <repository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>http://repo.spring.io/libs-release</url>
+        </repository>
+        <repository>
+            <id>org.jboss.repository.releases</id>
+            <name>JBoss Maven Release Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>http://repo.spring.io/milestone</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>http://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.2.0.BUILD-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
