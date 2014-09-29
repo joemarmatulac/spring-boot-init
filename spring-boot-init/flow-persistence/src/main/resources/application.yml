@@ -3,6 +3,6 @@ spring:
     active: dev
 jdbc:
   driver: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/flow
+  url: jdbc:mysql://localhost:3306/flowhack
   username: root
   password: 
