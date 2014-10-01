@@ -13,9 +13,13 @@ package com.tst.flow.persistence.repository;
  */
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.tst.flow.persistence.domain.Person;
 public interface PersonRepository extends CrudRepository<Person, Long>{
 	List<Person> findByLastName(String lastName);
+	
+	@Query("SELECT p FROM com.tst.flow.persistence.domain.Person p WHERE p.age > 10")
+	List<Person> findByAgeAboveTen();
 }

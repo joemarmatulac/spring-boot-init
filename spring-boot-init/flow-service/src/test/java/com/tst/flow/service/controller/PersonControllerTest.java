@@ -33,19 +33,19 @@ public class PersonControllerTest {
 
 	@Test
 	public void getPerson(){
-			PersonDto result = restTemplate().getForObject(URL+"/getperson", PersonDto.class);
+			PersonDto result = restTemplate("ma","mama").getForObject(URL+"/getperson", PersonDto.class);
 			System.out.println("****\n" + result.getFirstName() + "\n****\n");
 	}
 	
 	@Test
 	public void getPersons(){
-		List<PersonDto> result = Arrays.asList(restTemplate().getForObject(URL+"/findall", PersonDto[].class));
+		List<PersonDto> result = Arrays.asList(restTemplate("ma","mama").getForObject(URL+"/findall", PersonDto[].class));
 		System.out.println("****\n" + result.get(0).getFirstName() + "\n****\n\n\n");
 }
 	
 	@Test
 	public void findByLastName(){
-		List<PersonDto> dtos = Arrays.asList(restTemplate().postForObject(URL+"/getbylastname", "lname0.8669201274551452", PersonDto[].class));
+		List<PersonDto> dtos = Arrays.asList(restTemplate("ma","mama").postForObject(URL+"/getbylastname", "lname0.8669201274551452", PersonDto[].class));
 		for (PersonDto personDto : dtos) {
 			System.out.println(personDto.getFirstName() + " - " + personDto.getLastName());
 		}
@@ -53,12 +53,20 @@ public class PersonControllerTest {
 	
 	@Test
 	public void save(){
-		PersonDto personDto2 = new PersonDto("fname" + Math.random(), "lname" + Math.random());
-		PersonDto personDto = restTemplate().postForObject(URL+"/save", personDto2, PersonDto.class);
+		PersonDto personDto2 = new PersonDto("fname" + Math.random(), "lname" + Math.random(), 21);
+		PersonDto personDto = restTemplate("ma","mama").postForObject(URL+"/save", personDto2, PersonDto.class);
 		System.out.println("save():  Person id: " + personDto.getId());
 	}
 	
-	private static RestTemplate restTemplate() {
+	@Test
+	public void findByAgeAboveTenTest(){
+		List<PersonDto> result = Arrays.asList(restTemplate("ma","mama").getForObject(URL+"/findageaboveten", PersonDto[].class));
+		for (PersonDto personDto : result) {
+			System.out.println("Name: " + personDto.getFirstName() + " ," + personDto.getLastName() + " Age: " + personDto.getAge());
+		}
+	}
+	
+	private static RestTemplate restTemplate(final String userName, final String password) {
 		RestTemplate template = new RestTemplate();
 		List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
 		ClientHttpRequestInterceptor header = new ClientHttpRequestInterceptor() {
@@ -66,7 +74,8 @@ public class PersonControllerTest {
 			@Override
 			public ClientHttpResponse intercept(org.springframework.http.HttpRequest request, byte[] body,
 					ClientHttpRequestExecution execution) throws IOException {
-				    byte[] encodedAuthorisation = Base64.encode("ma:mama".getBytes());
+					String credential = userName + ":" + password;
+				    byte[] encodedAuthorisation = Base64.encode(credential.getBytes());
 				    request.getHeaders().add("Authorization", "Basic " + new String(encodedAuthorisation));
 		        return execution.execute(request, body);
 			}

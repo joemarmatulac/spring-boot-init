@@ -56,4 +56,10 @@ public class PersonControllerService {
     List<PersonDto> findAll() {
         return logic.findAll();
     }
+    
+    @RequestMapping(value = "/findageaboveten", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PersonDto> findByAgeAboveTen() {
+        return logic.findByAgeAboveTen();
+    }
 }

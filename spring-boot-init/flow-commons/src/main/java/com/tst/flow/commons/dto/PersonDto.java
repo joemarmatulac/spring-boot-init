@@ -16,9 +16,19 @@ public class PersonDto {
 	private long id;
 	private String firstName;
 	private String lastName;
+	private int age;
 
 	protected PersonDto() {
 	}
+	
+	public PersonDto(String firstName, String lastName, int age) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+	}
+
+
 
 	public PersonDto(String firstName, String lastName) {
 		super();
@@ -36,6 +46,14 @@ public class PersonDto {
 		this.id = id;
 		this.firstName = fistName;
 		this.lastName = lastName;
+	}
+
+	public PersonDto(long id, String firstName, String lastName, int age) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
 	}
 
 	public long getId() {
@@ -61,10 +79,18 @@ public class PersonDto {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", firstName=" + firstName + ", lastName="
-				+ lastName + "]";
+		return "PersonDto [id=" + id + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", age=" + age + "]";
 	}
 }

@@ -28,8 +28,18 @@ public class Person {
     private String firstName;
     @Column(name="last_name")
     private String lastName;
+    @Column(name="age")
+    private int age;
     
     protected Person(){}
+
+	public Person(String firstName, String lastName, int age) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+	}
+
 
 	public Person(String firstName, String lastName) {
 		super();
@@ -62,9 +72,17 @@ public class Person {
 		this.lastName = lastName;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", lastName="
-				+ lastName + "]";
+				+ lastName + ", age=" + age + "]";
 	}
 }

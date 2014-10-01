@@ -8,6 +8,8 @@
 
 package com.tst.flow.service.auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,13 +22,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @author Joemar S Matulac <joemar.matulac@totalsofttech.com.ph>
  *
  */
+@EnableConfigurationProperties({BasicAuthSettings.class})
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private BasicAuthSettings basicAuth;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("ma").password("mama").roles("USER");
+		auth.inMemoryAuthentication().withUser(basicAuth.getUsername()).password(basicAuth.getPassword()).roles("USER");
 	}
 
 	@Override

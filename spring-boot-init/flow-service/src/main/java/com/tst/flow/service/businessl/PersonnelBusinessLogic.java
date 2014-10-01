@@ -47,6 +47,14 @@ public class PersonnelBusinessLogic {
         }
         return toDtoList(persons);
     }
+    
+    public List<PersonDto> findByAgeAboveTen(){
+    	List<Person> persons = new ArrayList<>();
+    	for (Person person : personR.findByAgeAboveTen()) {
+            persons.add(person);
+        }
+    	return toDtoList(persons);
+    }
 
     /**
      * @param personLst
@@ -56,14 +64,14 @@ public class PersonnelBusinessLogic {
         List<PersonDto> list = new ArrayList<>();
         if (!personLst.isEmpty()) {
             for (Person p : personLst) {
-                list.add(new PersonDto(p.getId(), p.getFirstName(), p.getLastName()));
+                list.add(new PersonDto(p.getId(), p.getFirstName(), p.getLastName(), p.getAge()));
             }
         }
         return list;
     }
 
     private static PersonDto toDto(Person entity) {
-        return new PersonDto(entity.getId(), entity.getLastName(), entity.getFirstName());
+        return new PersonDto(entity.getId(), entity.getLastName(), entity.getFirstName(), entity.getAge());
     }
 
     /**
@@ -71,8 +79,8 @@ public class PersonnelBusinessLogic {
      * @return
      */
     public PersonDto save(PersonDto person) {
-        Person saved = personR.save(new Person(person.getFirstName(), person.getLastName()));
-        return new PersonDto(saved.getId(), saved.getFirstName(), saved.getLastName());
+        Person saved = personR.save(new Person(person.getFirstName(), person.getLastName(), person.getAge()));
+        return new PersonDto(saved.getId(), saved.getFirstName(), saved.getLastName(), saved.getAge());
     }
 
 }
